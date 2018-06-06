@@ -1,0 +1,43 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  text-rendering: optimizeLegibility;
+}
+
+/*
+  Na osnovu root html font-size, mogu da prilagodim ceo sajt u zavisnosti na kom uredjaju se prikazuje;
+  Dole u html elementu sam ukljucio nekoliko media query-a;
+  Svaki media query je za odredjen uredjaj;
+  To su breakpoints(tacke) koje se najcesce primenjuju kada se radi responsive design;
+  I na primer ako mi je uredjaj tab-land, font-size ce mi biti 50% odnosno 8px i tamo gde god da sam u css koristio rem(root em), to ce mi se automatski prilagoditi
+*/
+
+html {
+  // This defines what 1rem is
+  font-size: 62.5%;   // 1rem = 10px,  10px / 16 = 0.625%, 0.625% * 100 = 62.5%
+
+  @include  respond(tab-land) { // pita da li je sirina width < 120px ?
+    font-size: 50%;       // 1rem = 9px, 9px / 16px = 0.5625%, 0.5625% * 100 = 56.25%
+  }
+
+  @include  respond(tab-port) { // pita da li je sirina width < 900px ?
+    font-size: 56.25%;    // 1rem = 8px, 8px / 16 = 0.5%, 0.5% * 100 = .50%
+  }
+
+  @include  respond(big-desktop) {
+    font-size: 75%;     // 1rem = 12px, 12px / 16px = 0.75%, 0.75% * 100 = 75%
+  }
+}
+
+body {
+  box-sizing: border-box;
+  padding: 3rem;
+
+
+  @include  respond(tab-port) {
+    padding: 0;
+  }
+}
